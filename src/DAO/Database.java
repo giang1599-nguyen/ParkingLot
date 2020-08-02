@@ -108,6 +108,22 @@ public class Database {
         }
         return 0;
     }
+public static void createToken(String email, String token) {
+        String sql = "insert into  resetpass(email,token) values(?,?)";
+        Connection conn;
+        GetConnectDatabase get = new GetConnectDatabase();
+        try {
+            conn = get.getConnectionSql();
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1, email);
+            pre.setString(2, MD5Hashing.getMD5(token));
 
+
+            pre.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 }
