@@ -1,84 +1,75 @@
 package model;
 
-import java.util.*;
-
 import DAO.Database;
 
 public class ParkingLot {
-	String name;
-	int idOwner;
-	String district;
-	String city;
-	int maxCapacity;
-	int capacity;
-	int active;
+    String name;
+    int idOwner;
+    String image_parking;
+    String district;
+    String city;
+    String vehicle_type;
+    int capacity;
+    double price;
+    int active;
 
-	public ParkingLot(int idOwner, String name, String district, String city, int maxCapacity, int active) {
-		this.idOwner = idOwner;
-		this.name = name;
-		this.district = district;
-		this.city = city;
-		this.maxCapacity = maxCapacity;
-		this.active = active;
-	}
-	
-	public void storeCarParkinglot(String state) {
-		Database.storeCarParkinglot(state, this.name);
-	}
+    public ParkingLot(int idOwner, String name, String district, String city, int active) {
+        this.idOwner = idOwner;
+        this.name = name;
+        this.district = district;
+        this.city = city;
+        this.active = active;
+    }
 
-	public boolean checkSlot() {
-		if (capacity < this.getMaxCapacity()) {
-			return true;
-		}
-		return false;
-	}
+    public void storeCarParkinglot(String state) {
+        Database.storeCarParkinglot(state, this.name);
+    }
 
-	public void increaseCapacỉty() {
-		this.capacity++;
-	}
+//    public boolean checkSlot() {
+//        if (capacity < this.getMaxCapacity()) {
+//            return true;
+//        }
+//        return false;
+//    }
 
-	public int getIdOwner() {
-		return idOwner;
-	}
+    public void increaseCapacity() {
+        this.capacity++;
+    }
 
-	public void setIdOwner(int idOwner) {
-		this.idOwner = idOwner;
-	}
+    public int getIdOwner() {
+        return idOwner;
+    }
 
-	public String getDistrict() {
-		return district;
-	}
+    public void setIdOwner(int idOwner) {
+        this.idOwner = idOwner;
+    }
 
-	public void setDistrict(String district) {
-		this.district = district;
-	}
+    public String getDistrict() {
+        return district;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setDistrict(String district) {
+        this.district = district;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public int getMaxCapacity() {
-		return maxCapacity;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setMaxCapacity(int maxCapacity) {
-		this.maxCapacity = maxCapacity;
-	}
+    public int getActive() {
+        return active;
+    }
 
-	public int getActive() {
-		return active;
-	}
+    public void setActive(int active) {
+        this.active = active;
+    }
 
-	public void setActive(int active) {
-		this.active = active;
-	}
-
-	public int getCapacity() {
-		return capacity;
-	}
+    public int getCapacity() {
+        return capacity;
+    }
 
 }
