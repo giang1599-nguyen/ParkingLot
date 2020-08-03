@@ -15,16 +15,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
-@WebServlet("/ForgotPass")
-public class ForgotPass extends HttpServlet {
+@WebServlet("/ForgotPassController")
+public class ForgotPassController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         // kiểm tra user có tồn tại không
          if (Database.getUser(email) == null) {
                     request.setAttribute("mess", "Email không tồn tại!");
                     request.getRequestDispatcher("/forgotPass/forgotPass.jsp").forward(request, response);
-                    return;
-                    // thông báo lỗi
+
                 } else {
         // random token và hash bằng MD5 tăng bảo mật
         String token = MD5Hashing.getRandomString(10);
@@ -32,10 +31,13 @@ public class ForgotPass extends HttpServlet {
         SendMail.sendMail(email,"reset password for "+email,"click the following link to reset pass: " +
                 "http://localhost:8080/ParkingLot/ChangePass?email="+email+"&token="+token);
         Database.createToken(email,token);
-      request.setAttribute("mess", "Vui lòng vào email xác nhận!");
+     response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
+                             "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Check mail to reset password.</h6>\n" +
+                             "</div>");
         }
-        request.getRequestDispatcher("/forgotPass/forgotPass.jsp").forward(request, response);
+
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
