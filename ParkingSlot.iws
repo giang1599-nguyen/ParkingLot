@@ -7,13 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b73903-fd0e-49c7-91da-53ca3fc9e743" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DAO/MD5Hashing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ChangePass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ForgotPass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/forgotPass/changePass.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/forgotPass/forgotPass.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/CompleteChangePass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParkingSlot.iws" beforeDir="false" afterPath="$PROJECT_DIR$/ParkingSlot.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/SendMail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ChangePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ChangePass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ForgotPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ForgotPass.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DAO" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/controller" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -49,8 +48,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\XamPP\htdocs\Đăng git\ParkingLot\src\DAO" />
       <recent name="D:\XamPP\htdocs\Đăng git\ParkingLot\src\controller" />
+      <recent name="D:\XamPP\htdocs\Đăng git\ParkingLot\src\DAO" />
       <recent name="D:\XamPP\htdocs\Đăng git\ParkingLot\web" />
     </key>
   </component>
@@ -152,7 +151,8 @@
       <updated>1594879248504</updated>
       <workItem from="1594879256909" duration="343000" />
       <workItem from="1594879682047" duration="353000" />
-      <workItem from="1596386699664" duration="1848000" />
+      <workItem from="1596386699664" duration="2076000" />
+      <workItem from="1596431870946" duration="4303000" />
     </task>
     <servers />
   </component>
@@ -164,7 +164,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

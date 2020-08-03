@@ -14,7 +14,7 @@ public class ChangePass extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email= request.getParameter("email");
         String token = request.getParameter("token");
-//nếu kiểm tra trùng email và token thì cho đổi mật khẩu
+            //nếu kiểm tra trùng email và token thì cho đổi mật khẩu
         if(Database.checkToken(email,token)){
             request.setAttribute("email",email);
             request.getRequestDispatcher("forgotPass/changePass.jsp").forward(request,response);

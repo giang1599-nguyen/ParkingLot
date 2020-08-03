@@ -35,6 +35,5 @@ public class SendMail {
 
     public static void main(String[] args) {
         sendMail("thnhlngtrung@gmail.com","hihihi","lay lai mat khau");
-        System.out.println("thanh dep trai");
     }
 }

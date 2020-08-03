@@ -109,21 +109,120 @@ public class Database {
         return 0;
     }
 public static void createToken(String email, String token) {
-        String sql = "insert into  resetpass(email,token) values(?,?)";
+       if (checkEmail(email)) {
+                  updateToken(email, token);
+              } else {
+                  insertToken(email, token);
+              }
+}
+private static void updateToken(String email, String token) {
         Connection conn;
         GetConnectDatabase get = new GetConnectDatabase();
+        PreparedStatement pre = null;
+        String sqlUpdate;
+        if (token == null) {
+            sqlUpdate = "UPDATE resetpass set resetpass.token='' ";
+            try {
+                conn = get.getConnectionSql();
+                pre = conn.prepareStatement(sqlUpdate);
+                pre.executeUpdate();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } else {
+            //
+            sqlUpdate = "UPDATE resetpass set resetpass.token=? WHERE email=?";
+            try {
+                conn = get.getConnectionSql();
+                // đã có mail thì update token
+                System.out.println(" Đã có mail");
+                pre = conn.prepareStatement(sqlUpdate);
+
+                pre.setString(1, MD5Hashing.getMD5(token));
+                pre.setString(2, email);
+                pre.executeUpdate();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+ private static void insertToken(String email, String token) {
+        Connection conn;
+        GetConnectDatabase get = new GetConnectDatabase();
+        PreparedStatement pre = null;
+        String sqlInsert = "insert into  resetpass (email,token) values(?,?)";
         try {
             conn = get.getConnectionSql();
-            PreparedStatement pre = conn.prepareStatement(sql);
+            System.out.println(" chưa có mail");
+            // nếu mail chưa có trong bảng reset thì thêm vào
+            pre = conn.prepareStatement(sqlInsert);
             pre.setString(1, email);
             pre.setString(2, MD5Hashing.getMD5(token));
-
-
             pre.executeUpdate();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+      // kiểm tra thời gian token đó tồn tại trong vòng 30 phút mà chưa click thì xóa luôn token
+        public static void deleteToken() {
+            String sql = "select expirydate from resetpass";
+            Connection conn;
+            GetConnectDatabase get = new GetConnectDatabase();
+            Timestamp time_token;
+            try {
+                conn = get.getConnectionSql();
+                PreparedStatement pre = conn.prepareStatement(sql);
+                ResultSet result = pre.executeQuery();
+                while (result.next()) {
+                    String time = result.getString("expirydate");
+                    time_token = Timestamp.valueOf(time);
+                    Timestamp window_time = new Timestamp(System.currentTimeMillis());
+                    long t1 = window_time.getTime();
+                    long t2 = time_token.getTime();
+                    System.out.println(t1 - t2 + " dfd " + t2);
+                    if (t1 - t2 >= 1764)// >=30 phút
+                    {
+                        // xóa token
+                        String sqlUpdate = "UPDATE resetpass set resetpass.token=? ";
+                        try {
+                            conn = get.getConnectionSql();
+                            pre = conn.prepareStatement(sqlUpdate);
+                            pre.setString(1, "");
+                            pre.executeUpdate();
 
-}
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+
+ private static boolean checkEmail(String email) {
+
+        Connection conn;
+        GetConnectDatabase get = new GetConnectDatabase();
+        PreparedStatement pre = null;
+        String sqlCheck = "select resetpass.email from resetpass ";
+        boolean flag = false;
+        try {
+            conn = get.getConnectionSql();
+            // check email trong reset đã tồn tại chưa
+            PreparedStatement check = conn.prepareStatement(sqlCheck);
+            ResultSet result = check.executeQuery();
+            while (result.next()) {
+                if (result.getString("email").equals(email))
+                    flag = true;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return flag;
+    }
