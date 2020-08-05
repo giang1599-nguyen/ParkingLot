@@ -7,10 +7,8 @@ import java.sql.*;
 
 public class Database {
 
-    GetConnectDatabase g;
-
-    public Database() {
-        // mỗi lần chạy dữ liệu đều ktra token
+    public Database()  {
+        // má»—i láº§n cháº¡y dá»¯ liá»‡u Ä‘á»�u ktra token
         Database.deleteToken();
     }
 
@@ -20,12 +18,13 @@ public class Database {
 
     public static boolean checkUser(String email, String password) throws SQLException {
         ResultSet set = null;
+        Connection connection;
         try {
-            Connection connection = GetConnectDatabase.getConnectionSql();
+            connection = GetConnectDatabase.getConnectionSql();
             String sql = "SELECT * FROM user WHERE user.email=? AND user.password=? AND user.active=1";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
-            st.setString(2, password);
+            st.setString(2, MD5Hashing.getMD5(password));
             set = st.executeQuery();
 
 
@@ -38,8 +37,9 @@ public class Database {
 
     public static User getUser(String email) {
         ResultSet set = null;
+        Connection connection;
         try {
-            Connection connection = GetConnectDatabase.getConnectionSql();
+            connection = GetConnectDatabase.getConnectionSql();
             String sql = "SELECT * FROM user WHERE user.email=?";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
@@ -57,10 +57,10 @@ public class Database {
     //add user thanh cong tra ve 1, khong thanh cong tra ve 0
     public static int addUser(String email, String name) {
         String sql = "Insert into user(fullname,email,active) values(?,?,?)";
-        Connection conn = null;
+        Connection connection;
         try {
-            conn = GetConnectDatabase.getConnectionSql();
-            PreparedStatement pre = conn.prepareStatement(sql);
+            connection = GetConnectDatabase.getConnectionSql();
+            PreparedStatement pre = connection.prepareStatement(sql);
 
             pre.setString(1, name);
             pre.setString(2, email);
@@ -75,10 +75,10 @@ public class Database {
 
     public static int changeActive(String email, int active) {
         String sql = "Update user set active=? where email=?";
-        Connection conn = null;
+        Connection connection;
         try {
-            conn = GetConnectDatabase.getConnectionSql();
-            PreparedStatement pre = conn.prepareStatement(sql);
+            connection = GetConnectDatabase.getConnectionSql();
+            PreparedStatement pre = connection.prepareStatement(sql);
             pre.setInt(1, active);
             pre.setString(2, email);
             return pre.executeUpdate();
@@ -93,14 +93,14 @@ public class Database {
     public static int addUser(User user) {
         if (getUser(user.getEmail()) == null) {
             String sql = "Insert into user(email,fullname,password,address,phone,active) values(?,?,?,?,?,?)";
-            Connection conn = null;
+            Connection connection;
             try {
-                conn = GetConnectDatabase.getConnectionSql();
-                PreparedStatement pre = conn.prepareStatement(sql);
+                connection = GetConnectDatabase.getConnectionSql();
+                PreparedStatement pre = connection.prepareStatement(sql);
 
                 pre.setString(1, user.getEmail());
                 pre.setString(2, user.getFullname());
-                pre.setString(3, user.getPassword());
+                pre.setString(3, MD5Hashing.getMD5(user.getPassword()));
                 pre.setString(4, user.getAddress());
                 pre.setString(5, user.getPhone());
                 pre.setInt(6, 0);
@@ -114,20 +114,12 @@ public class Database {
         return 0;
     }
 
-//    public static void main(String[] args) {
-//        if (Database.getUser("thnhlngtrung@gmail.com") != null)
-////			Database.changeActive(email,1);
-//
-//            System.out.println(Database.changeActive("thnhlngtrung@gmail.com", 1));
-//    }
-
     public static boolean checkToken(String email, String token) {
         String sql = "select * from resetpass where email=?";
-        Connection conn;
-        GetConnectDatabase get = new GetConnectDatabase();
+        Connection connection;
         try {
-            conn = get.getConnectionSql();
-            PreparedStatement pre = conn.prepareStatement(sql);
+            connection = GetConnectDatabase.getConnectionSql();
+            PreparedStatement pre = connection.prepareStatement(sql);
             pre.setString(1, email);
             ResultSet rs = pre.executeQuery();
             if (rs.next()) {
@@ -150,15 +142,14 @@ public class Database {
 
     private static boolean checkEmail(String email) {
 
-        Connection conn;
-        GetConnectDatabase get = new GetConnectDatabase();
         PreparedStatement pre = null;
         String sqlCheck = "select resetpass.email from resetpass ";
         boolean flag = false;
+        Connection connection;
         try {
-            conn = get.getConnectionSql();
-            // check email trong reset đã tồn tại chưa
-            PreparedStatement check = conn.prepareStatement(sqlCheck);
+            connection = GetConnectDatabase.getConnectionSql();
+            // check email trong reset Ä‘Ă£ tá»“n táº¡i chÆ°a
+            PreparedStatement check = connection.prepareStatement(sqlCheck);
             ResultSet result = check.executeQuery();
             while (result.next()) {
                 if (result.getString("email").equals(email))
@@ -171,15 +162,14 @@ public class Database {
     }
 
     private static void insertToken(String email, String token) {
-        Connection conn;
-        GetConnectDatabase get = new GetConnectDatabase();
         PreparedStatement pre = null;
         String sqlInsert = "insert into  resetpass (email,token) values(?,?)";
+        Connection connection;
         try {
-            conn = get.getConnectionSql();
-            System.out.println(" chưa có mail");
-            // nếu mail chưa có trong bảng reset thì thêm vào
-            pre = conn.prepareStatement(sqlInsert);
+            connection = GetConnectDatabase.getConnectionSql();
+            System.out.println(" chÆ°a cĂ³ mail");
+            // náº¿u mail chÆ°a cĂ³ trong báº£ng reset thĂ¬ thĂªm vĂ o
+            pre = connection.prepareStatement(sqlInsert);
             pre.setString(1, email);
             pre.setString(2, MD5Hashing.getMD5(token));
             pre.executeUpdate();
@@ -190,15 +180,14 @@ public class Database {
     }
 
     private static void updateToken(String email, String token) {
-        Connection conn;
-        GetConnectDatabase get = new GetConnectDatabase();
         PreparedStatement pre = null;
         String sqlUpdate;
+        Connection connection;
         if (token == null) {
             sqlUpdate = "UPDATE resetpass set resetpass.token='' ";
             try {
-                conn = get.getConnectionSql();
-                pre = conn.prepareStatement(sqlUpdate);
+                connection = GetConnectDatabase.getConnectionSql();
+                pre = connection.prepareStatement(sqlUpdate);
                 pre.executeUpdate();
 
             } catch (SQLException throwables) {
@@ -208,10 +197,10 @@ public class Database {
             //
             sqlUpdate = "UPDATE resetpass set resetpass.token=? WHERE email=?";
             try {
-                conn = get.getConnectionSql();
-                // đã có mail thì update token
-                System.out.println(" Đã có mail");
-                pre = conn.prepareStatement(sqlUpdate);
+                connection = GetConnectDatabase.getConnectionSql();
+                // Ä‘Ă£ cĂ³ mail thĂ¬ update token
+                System.out.println(" Ä�Ă£ cĂ³ mail");
+                pre = connection.prepareStatement(sqlUpdate);
 
                 pre.setString(1, MD5Hashing.getMD5(token));
                 pre.setString(2, email);
@@ -225,12 +214,11 @@ public class Database {
 
     public static void changePass(String email, String pass) {
         String sql = "update user set password=? where email=?";
-        Connection conn;
-        GetConnectDatabase get = new GetConnectDatabase();
+         Connection connection;
         try {
-            conn = get.getConnectionSql();
-            PreparedStatement pre = conn.prepareStatement(sql);
-            pre.setString(1, pass);
+            connection = GetConnectDatabase.getConnectionSql();
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1,MD5Hashing.getMD5(pass) );
             pre.setString(2, email);
             pre.executeUpdate();
 
@@ -240,20 +228,19 @@ public class Database {
     }
 
     public static void deleteToken(String email) {
-        // thay đổi mật khẩu thành công thì xóa luôn token đã gửi về mail
+        // thay Ä‘á»•i máº­t kháº©u thĂ nh cĂ´ng thĂ¬ xĂ³a luĂ´n token Ä‘Ă£ gá»­i vá»� mail
 
         updateToken(email, null);
     }
 
-    // kiểm tra thời gian token đó tồn tại trong vòng 30 phút mà chưa click thì xóa luôn token
+    // kiá»ƒm tra thá»�i gian token Ä‘Ă³ tá»“n táº¡i trong vĂ²ng 30 phĂºt mĂ  chÆ°a click thĂ¬ xĂ³a luĂ´n token
     public static void deleteToken() {
         String sql = "select expirydate from resetpass";
-        Connection conn;
-        GetConnectDatabase get = new GetConnectDatabase();
         Timestamp time_token;
+        Connection connection;
         try {
-            conn = get.getConnectionSql();
-            PreparedStatement pre = conn.prepareStatement(sql);
+            connection = GetConnectDatabase.getConnectionSql();
+            PreparedStatement pre = connection.prepareStatement(sql);
             ResultSet result = pre.executeQuery();
             while (result.next()) {
                 String time = result.getString("expirydate");
@@ -262,13 +249,12 @@ public class Database {
                 long t1 = window_time.getTime();
                 long t2 = time_token.getTime();
                 System.out.println(t1 - t2 + " dfd " + t2);
-                if (t1 - t2 >= 1764)// >=30 phút
+                if (t1 - t2 >= 1764)// >=30 phĂºt
                 {
-                    // xóa token
+                    // xĂ³a token
                     String sqlUpdate = "UPDATE resetpass set resetpass.token=? ";
                     try {
-                        conn = get.getConnectionSql();
-                        pre = conn.prepareStatement(sqlUpdate);
+                        pre = connection.prepareStatement(sqlUpdate);
                         pre.setString(1, "");
                         pre.executeUpdate();
 

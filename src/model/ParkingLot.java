@@ -1,6 +1,6 @@
 package model;
 
-import DAO.Database;
+import dao.Database;
 
 public class ParkingLot {
     String name;
