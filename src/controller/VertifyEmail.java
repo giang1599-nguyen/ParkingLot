@@ -16,7 +16,7 @@ public class VertifyEmail extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
-//7 cho phép người dùng truy cập với email đã đăng kí
+//7 cho phép người dùng truy cập với email đã đăng kí ( chuyển active thành 1)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
