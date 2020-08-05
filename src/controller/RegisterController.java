@@ -20,7 +20,7 @@ public class RegisterController extends HttpServlet {
 doPost(request,response);
     }
 
-    //5.Lấy thông tin người dùng nhập đưa vào biến user: User và tiến hành đăng ký thông tin người dùng
+    //5.Lay thong tin nguoi dung nhap vao dua vao bien user: User va tien hanh dang ki thong tin nguoi dung
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        String email="",fullname="",password="",address="",phone="";
        email = request.getParameter("email");
@@ -37,22 +37,22 @@ doPost(request,response);
         user.setAddress(address);
         user.setPhone(phone);
         
-        //5.1Thêm user vào database và kiểm tra xem đã tồn tại hay chưa, nếu chưa sẽ trả về 0
+        //5.1Them user vao DB va check xem user ton tai chua, neu chua return 0
         Database db = new Database();
         if(db.addUser(user)!=0){
         	
-        	//5.4Gửi link xác nhận về mail cho người dùng 
+        	//5.4Gui link xac nhan ve mail cho ng dung
             String link ="http://localhost:8080/ParkingLot/vertifyEmail?email="+email;
             SendMail.sendMail(email,"xac thuc email","click vao link sau de xac thuc email: "+ link  );
             
-            //5.5 Hiển thị thông báo yêu cầu người dùng xác nhận link
+            //5.5 Hien thi thong bao yeu cau ng dung xac nhan link
             response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
-                    "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Vui lòng nhấn vào link xác nhận tại email vừa nhập.</h6>\n" +
+                    "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Please check your email to active your account..</h6>\n" +
                     "</div>");
         }
-        //5a.Chuyển về trang SingUp để hiển thị lỗi
+        //5a.Neu email ton tai thi chuyen ve trang sign up va hien thi "Existed email"
         else{	
-            request.setAttribute("mess","Email đã tồn tại");
+            request.setAttribute("mess","Existed email");
             request.getRequestDispatcher("signup/SignUp.jsp").forward(request,response);
         }
 
