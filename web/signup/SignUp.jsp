@@ -56,6 +56,9 @@
 		} else {
 			document.getElementById("errorfullname").innerHTML = "";
 		}
+		
+		///////////////////////////////
+		
 		if (!emailPattern.test(email.trim())) {
 			document.getElementById("erroremail").innerHTML = "Vui lòng nhập đúng định dạng email";
 			valid = false;
@@ -63,6 +66,8 @@
 			document.getElementById("erroremail").innerHTML = "";
 		}
 
+		///////////////////////////////
+		
 		if (address.trim() == "") {
 			document.getElementById("erroraddress").innerHTML = "Hãy nhập địa chỉ";
 			valid = false;
@@ -70,12 +75,17 @@
 			document.getElementById("erroraddress").innerHTML = "";
 		}
 
+		///////////////////////////////
+		
 		if (!phonePattern.test(phonenum.trim())) {
 			document.getElementById("errorphonenum").innerHTML = "Hãy nhập số điện thoại đúng định dạng";
 			valid = false;
 		} else {
 			document.getElementById("errorphonenum").innerHTML = "";
 		}
+
+		///////////////////////////////
+		
 		if (!passPattern.test(pass.trim())) {
 			document.getElementById("errorpassword").innerHTML = "Mật khẩu phải có 8 kí tự gồm chữ hoa, chữ thường, số, kí tự đặt biệt ";
 			valid = false;
@@ -83,12 +93,17 @@
 			document.getElementById("errorpassword").innerHTML = "";
 		}
 
+		///////////////////////////////
+		
 		if (repass.trim() != pass.trim()) {
 			document.getElementById("errorrepassword").innerHTML = "Hãy nhập lại mật khẩu một lần nữa";
 			valid = false;
 		} else {
 			document.getElementById("errorrepassword").innerHTML = "";
 		}
+
+		///////////////////////////////
+		
 		return valid;
 	}
 </script>
@@ -110,45 +125,56 @@
 						<form action="/ParkingLot/RegisterController" name="myform"
 							onsubmit="return validateForm()" method="post">
 							<%--insert --%>
+							
+							
 							<div class="form-group">
 								<input class="form-control" type="text" name="fullname"
 									placeholder="Họ và tên" onkeyup="validateForm()">
 								<p style="color: red;" id="errorfullname"></p>
 							</div>
+							
+							
 							<div class="form-group">
 								<input class="form-control" type="email" name="email"
 									placeholder="Nhập email" onkeyup="validateForm()">
 								<p style="color: red;" id="erroremail"></p>
 							</div>
+							
+							
 							<div class="form-group">
 								<input class="form-control" type="text" name="address"
 									placeholder="Địa chỉ" onkeyup="validateForm()">
 								<p style="color: red;" id="erroraddress"></p>
 							</div>
+							
+							
 							<div class="form-group">
 								<input class="form-control" type="number" name="phonenum"
 									placeholder="Nhập số điện thoại:" onkeyup="validateForm()">
 								<p style="color: red;" id="errorphonenum"></p>
 							</div>
-							<div class="form-group">
-								<input class="form-control" type="text" name="username"
-									placeholder="Nhập tên truy cập" onkeyup="validateForm()">
-								<p style="color: red;" id="errorusername"></p>
-							</div>
+							
+						
 							<div class="form-group">
 								<input class="form-control" type="password" name="pass"
 									placeholder="Mật khẩu" onkeyup="validateForm()">
 								<p style="color: red;" id="errorpassword"></p>
 							</div>
+							
+							
 							<div class="form-group">
 								<input class="form-control" type="password" name="repass"
 									placeholder="Nhập lại mật khẩu" onkeyup="validateForm()">
 								<p style="color: red;" id="errorrepassword"></p>
 							</div>
+							
+							
 							<div class="form-group">
 								<input type="submit" class="btn btn-success btn-lg btn-block"
 									value="Submit">
 							</div>
+							
+							
 							<%--                        --%>
 							<br> <a href="#" id="forget-btn" class="float-left"></a> <a
 								href="http://localhost:8080/ParkingLot/login/loginForm.jsp"
