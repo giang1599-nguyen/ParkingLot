@@ -116,9 +116,9 @@
 					<br>
 					<hr>
 					<div class="panel-body">
-						<c:url
+						<%-- <c:url
 							value="${request.getContextPath()}/RegisterController?vertifydk=true"
-							var="urlregis"></c:url>
+							var="urlregis"></c:url>--%>
 							
 						<form action="/ParkingLot/RegisterController" name="myform"
 							onsubmit="return validateForm()" method="post">
