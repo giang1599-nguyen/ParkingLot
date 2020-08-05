@@ -17,10 +17,11 @@ public class CompleteChangePass extends HttpServlet {
              System.out.println("email là: " + email);
              // 11.2 lay du lieu tu form changePass.jps khong null thi goi toi method changePass cua database
              if (email != null) {
+            	 Database db = new Database();
                  String pass = request.getParameter("pass");
-                 Database.changePass(email, pass);
+                 db.changePass(email, pass);
                  //11.3 doi pass thanh cong thi xoa token da luu trong database
-                 Database.deleteToken(email);
+                 db.deleteToken(email);
                  //12 chuyen ve trang login
                  response.sendRedirect("http://localhost:8080/ParkingLot/login/loginForm.jsp");
                  System.out.println(" thay đổi mật khẩu thành công");

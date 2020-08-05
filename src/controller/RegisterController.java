@@ -35,7 +35,9 @@ doPost(request,response);
         user.setPassword(password);
         user.setAddress(address);
         user.setPhone(phone);
-        if(Database.addUser(user)!=0){
+        
+        Database db = new Database();
+        if(db.addUser(user)!=0){
             String link ="http://localhost:8080/ParkingLot/vertifyEmail?email="+email;
             SendMail.sendMail(email,"xac thuc email","click vao link sau de xac thuc email: "+ link  );
             

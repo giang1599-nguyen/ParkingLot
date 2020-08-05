@@ -16,7 +16,8 @@ public class ChangePass extends HttpServlet {
         String email= request.getParameter("email");
         String token = request.getParameter("token");
         //9.1.1 kiem tra link ma nguoi dung nhap vao trung email va token thi cho doi mat khau
-               if (Database.checkToken(email, token)) {
+        Database db = new Database();
+               if (db.checkToken(email, token)) {
                    request.setAttribute("email", email);
                    //9.1.2 kiem tra ok chuyen va trang doi mat khau
                    request.getRequestDispatcher("forgotPass/changePass.jsp").forward(request, response);
