@@ -22,7 +22,7 @@
 
         <style>
         body{
-        background-image: url(../img/img.jpg);
+        background-image: url(http://localhost:8080/ParkingLot/img/img.jpg);
         }
         </style>
         </head>
@@ -43,20 +43,21 @@
         <h2 class="text-center">Forgot Password?</h2>
         <p>You can reset your password here.</p>
         <div class="panel-body">
-
+<%-- hien thi form--%>
         <form class="form" method="post" action="http://localhost:8080/ParkingLot/ForgotPassController">
         <fieldset>
         <div class="form-group">
         <div class="input-group">
         <span class="input-group-addon"><i
         class="glyphicon glyphicon-envelope color-blue"></i></span>
-
+<%-- 3. Nguoi dung nhap email--%>
         <input id="emailInput" placeholder="emxample@gmail.com" name="email"
         class="form-control" type="email"
         oninvalid="setCustomValidity('Please enter a valid email address!')"
         onchange="try{setCustomValidity('')}catch(e){}" required="">
         </div>
         </div>
+<%--         neu email khong ton tai hien thi len form--%>
             <%
                                             String mess = (String) request.getAttribute("mess");
                                             if (mess != null) {

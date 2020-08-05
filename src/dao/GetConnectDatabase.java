@@ -10,7 +10,7 @@ public class GetConnectDatabase {
 
     public GetConnectDatabase() {
     }
-
+//  lay ket moi toi database
     public static Connection getConnectionSql(){
         try {
             Class.forName("com.mysql.jdbc.Driver");

@@ -11,22 +11,24 @@ import java.io.IOException;
 
 @WebServlet("/ChangePass")
 public class ChangePass extends HttpServlet {
+//9.1 Dung phuong thuc post de xu ly data
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email= request.getParameter("email");
         String token = request.getParameter("token");
-        //nếu kiểm tra trùng email và token thì cho đổi mật khẩu
+        //9.1.1 kiem tra link ma nguoi dung nhap vao trung email va token thi cho doi mat khau
                if (Database.checkToken(email, token)) {
                    request.setAttribute("email", email);
+                   //9.1.2 kiem tra ok chuyen va trang doi mat khau
                    request.getRequestDispatcher("forgotPass/changePass.jsp").forward(request, response);
                    return;
                } else {
-                   // không thì thông báo check lại mail cho lựa chọn chuyển về trang quên mật khẩu
+                   // 9.1.1a khong trung thong bao link het han
                    response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
                            "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Check mail to reset password.</h6>\n" +
                            "</div>" + "<a href='#'>" + "Forgot password page" + "</a>");
                }
     }
-
+// 9. dung phuong thuc get de truy xuat du lieu
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }

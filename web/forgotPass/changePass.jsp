@@ -37,7 +37,7 @@
 
         <style>
         body {
-        background-image: url(../img/img.jpg);
+            background-image: url(http://localhost:8080/ParkingLot/img/img.jpg);
         }
         </style>
             <% String email = request.getParameter("email");%>
@@ -68,11 +68,10 @@
         <div class="input-group">
         <span class="input-group-addon"><i
         class="glyphicon glyphicon-lock color-blue"></i></span>
-
+<%--10 > nguoi dung nhap password moi , xac nhan lai va nhan save--%>
         <input placeholder="***********" name="pass"
         class="form-control" type="password" id="password"
-        oninvalid="setCustomValidity('Please enter a password more 8 characters!')"
-        onchange="try{setCustomValidity('')}catch(e){}" required="">
+        required="">
         </div>
         <p id="checkPass"></p>
         <br>
@@ -82,8 +81,7 @@
 
         <input placeholder="***********" name="repass" id="repassword"
         class="form-control" type="password"
-        oninvalid="setCustomValidity('Please enter re password more same password!')"
-        onchange="try{setCustomValidity('')}catch(e){}" required="">
+        required="">
         </div>
         <p id="checkRepass"></p>
         </div>
@@ -194,11 +192,12 @@
         }
         }, null);
         </script>
+<%--             validate passs va repass--%>
         <script>
         const check_password = document.getElementById("password");
         const check_repassword = document.getElementById("repassword");
         check_password.addEventListener("keyup", validatePass);
-        check_password.addEventListener("keyup", validateRepass);
+        check_repassword.addEventListener("keyup", validateRepass);
 
         function validatePassword(password) {
         var re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");

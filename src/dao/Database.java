@@ -8,7 +8,7 @@ import java.sql.*;
 public class Database {
 
     public Database()  {
-        // má»—i láº§n cháº¡y dá»¯ liá»‡u Ä‘á»�u ktra token
+        // moi lan chay database la kem tra token da het han chua
         Database.deleteToken();
     }
 
@@ -34,11 +34,12 @@ public class Database {
 
         return set.next();
     }
-
+//  Kiem tra voi mot mail nguoi dung nhap vao thi user do co ton tai trong database chua
     public static User getUser(String email) {
         ResultSet set = null;
         Connection connection;
         try {
+        //4.3 goi toi method getConnectionSql()
             connection = GetConnectDatabase.getConnectionSql();
             String sql = "SELECT * FROM user WHERE user.email=?";
             PreparedStatement st = connection.prepareStatement(sql);
@@ -113,7 +114,7 @@ public class Database {
         }
         return 0;
     }
-
+// kiem tra input email va token co trung trong database khong
     public static boolean checkToken(String email, String token) {
         String sql = "select * from resetpass where email=?";
         Connection connection;
@@ -131,11 +132,14 @@ public class Database {
         }
         return false;
     }
-
+// to token voi email nguoi dung nhap
     public static void createToken(String email, String token) {
+    // kiem tra mail nguoi dung nhap da ton tai trong database
         if (checkEmail(email)) {
+        //6.1a: chi cap nhat lai token
             updateToken(email, token);
         } else {
+        //6.1b: chen email va token xuong database
             insertToken(email, token);
         }
     }
@@ -211,7 +215,7 @@ public class Database {
             }
         }
     }
-
+// cap nhat password trong database
     public static void changePass(String email, String pass) {
         String sql = "update user set password=? where email=?";
          Connection connection;
@@ -226,10 +230,9 @@ public class Database {
             throwables.printStackTrace();
         }
     }
-
+// xoa token
     public static void deleteToken(String email) {
-        // thay Ä‘á»•i máº­t kháº©u thĂ nh cĂ´ng thĂ¬ xĂ³a luĂ´n token Ä‘Ă£ gá»­i vá»� mail
-
+        // 11.4 cap nhat lai token null trong bang resetpass
         updateToken(email, null);
     }
 

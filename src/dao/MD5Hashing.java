@@ -25,6 +25,7 @@ public class MD5Hashing {
         }
         return sb.toString();
     }
+    // random chuoi token voi do dai duoc chi dinh
     public static String getRandomString(int length) {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();

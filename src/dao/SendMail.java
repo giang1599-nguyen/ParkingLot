@@ -7,7 +7,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendMail {
-    public static boolean sendMail(String to, String subject, String text) {
+// 5.1.1 gui toi mail nguoi dung nhap voi token da hash theo chi dinh cua ForgotPassController
+    public static boolean sendMail(String mail, String subject, String token) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -23,9 +24,9 @@ public class SendMail {
             Message message = new MimeMessage(session);
             message.setHeader("Content-Type", "text/plain; charset=UTF-8");
             message.setFrom(new InternetAddress("thanhluongtrungit@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
             message.setSubject(subject);
-            message.setText(text);
+            message.setText(token);
             Transport.send(message);
         } catch (MessagingException e) {
             return false;

@@ -67,7 +67,8 @@
                         <div class="form-group">
                             <input type="submit" class="btn btn-success btn-lg btn-block" value="Submit">
                         </div> <!--end of form group-->
-
+<%--1. Click quen mat khau tai trang login --%>
+<%--    2. chuyen ve trang doi mat khau (the a)--%>
                         <a href="http://localhost:8080/ParkingLot/forgotPass/forgotPass.jsp" id="forget-btn" class="float-left">Forgot Password?</a>
                         <a href="http://localhost:8080/ParkingLot/signup/SignUp.jsp" id="forget-btn1" class="float-right">Sign Up a new Account?</a>
                     </form> <!--end of form-->
