@@ -34,6 +34,7 @@
 <!--custom css -->
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript">
+// 3.1 kiểm tra thông tin người dùng nhập
 	function validateForm() {
 
 		var username = document.myform.username.value;
@@ -45,10 +46,15 @@
 		var phonenum = document.myform.phonenum.value
 		var valid = true;
 
+		//pattern định dạng email
 		var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		//pattern định dạng sdt: chỉ chấp nhập số điện thoại có 10 chữ số
 		var phonePattern = /^\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/;
+		//pattern định dạng password: tối thiểu 8 kí tự, gồm chữ hoa, chữ thường, số và kí tự đặc biệt
 		var passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
 
+		//Các thuộc tính không được để trống
+		
 		if (fullname.trim() == "") {
 			document.getElementById("errorfullname").innerHTML = "Hãy nhập họ tên";
 			valid = false;
@@ -102,6 +108,7 @@
 </script>
 </head>
 <body>
+<%-- 2.Hiển thị form --%>
 
 	<!-- /SECTION -->
 	<div class="container" style="margin-top: 100px;">
@@ -115,8 +122,8 @@
 
 						<form action="/ParkingLot/RegisterController" name="myform"
 							onsubmit="return validateForm()" method="post">
-							<%--insert --%>
 
+							<%-- Insert --%>
 							<div class="form-group">
 								<input class="form-control" type="text" name="fullname"
 									placeholder="Họ và tên" onkeyup="validateForm()">
@@ -167,7 +174,7 @@
 							<br> <a href="#" id="forget-btn" class="float-left"></a> <a
 								href="http://localhost:8080/ParkingLot/login/loginForm.jsp"
 								id="" class="float-right"
-								style="color: #5e7c23; font-size: 28px">Sign In</a>
+								style="color: #5e7c23; font-size: 28px">Log In</a>
 						</form>
 						<!--end of form-->
 
