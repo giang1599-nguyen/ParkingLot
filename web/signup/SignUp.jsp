@@ -30,7 +30,7 @@
 <script type="text/javascript">
 	//3.1 kiểm tra thông tin người dùng nhập
 	function validateForm() {
-
+//
 		var pass = document.myform.pass.value;
 		var repass = document.myform.repass.value;
 		var fullname = document.myform.fullname.value
