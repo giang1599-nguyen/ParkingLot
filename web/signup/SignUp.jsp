@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%--    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>--%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>--%>
 <%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Sign Up Account</title>
-
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--Bootstrap CDN link-->
@@ -28,18 +26,17 @@
 	rel="stylesheet">
 <!--custom css -->
 <link rel="stylesheet" href="../css/style.css">
-<script type="text/javascript">
-	// 3.1 kiểm tra thông tin người dùng nhập
-	function validateForm() {
 
-		var username = document.myform.username.value;
+<script type="text/javascript">
+	//3.1 kiểm tra thông tin người dùng nhập
+	function validateForm() {
+//
 		var pass = document.myform.pass.value;
 		var repass = document.myform.repass.value;
 		var fullname = document.myform.fullname.value
 		var email = document.myform.email.value
 		var address = document.myform.address.value
 		var phonenum = document.myform.phonenum.value
-
 		var valid = true;
 
 		//pattern định dạng email
@@ -57,7 +54,7 @@
 			document.getElementById("errorfullname").innerHTML = "";
 		}
 		
-		///////////////////////////////
+		/////////////////////////////
 		
 		if (!emailPattern.test(email.trim())) {
 			document.getElementById("erroremail").innerHTML = "Vui lòng nhập đúng định dạng email";
@@ -65,8 +62,8 @@
 		} else {
 			document.getElementById("erroremail").innerHTML = "";
 		}
-
-		///////////////////////////////
+		
+		/////////////////////////////
 		
 		if (address.trim() == "") {
 			document.getElementById("erroraddress").innerHTML = "Hãy nhập địa chỉ";
@@ -74,8 +71,8 @@
 		} else {
 			document.getElementById("erroraddress").innerHTML = "";
 		}
-
-		///////////////////////////////
+		
+		/////////////////////////////
 		
 		if (!phonePattern.test(phonenum.trim())) {
 			document.getElementById("errorphonenum").innerHTML = "Hãy nhập số điện thoại đúng định dạng";
@@ -84,7 +81,7 @@
 			document.getElementById("errorphonenum").innerHTML = "";
 		}
 
-		///////////////////////////////
+		/////////////////////////////
 		
 		if (!passPattern.test(pass.trim())) {
 			document.getElementById("errorpassword").innerHTML = "Mật khẩu phải có 8 kí tự gồm chữ hoa, chữ thường, số, kí tự đặt biệt ";
@@ -93,7 +90,7 @@
 			document.getElementById("errorpassword").innerHTML = "";
 		}
 
-		///////////////////////////////
+		/////////////////////////////
 		
 		if (repass.trim() != pass.trim()) {
 			document.getElementById("errorrepassword").innerHTML = "Hãy nhập lại mật khẩu một lần nữa";
@@ -102,15 +99,15 @@
 			document.getElementById("errorrepassword").innerHTML = "";
 		}
 
-		///////////////////////////////
+		/////////////////////////////
 		
 		return valid;
 	}
 </script>
 </head>
 <body>
-	<!-- /SECTION -->
 	<%-- 2.Hiển thị form --%>
+	<!-- /SECTION -->
 	<div class="container" style="margin-top: 100px;">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -121,11 +118,11 @@
 					<div class="panel-body">
 						<%-- <c:url
 							value="${request.getContextPath()}/RegisterController?vertifydk=true"
-							var="urlregis"></c:url> --%>
+							var="urlregis"></c:url>--%>
+							
 						<form action="/ParkingLot/RegisterController" name="myform"
 							onsubmit="return validateForm()" method="post">
 							<%--insert --%>
-							
 							
 							<div class="form-group">
 								<input class="form-control" type="text" name="fullname"
@@ -154,7 +151,7 @@
 								<p style="color: red;" id="errorphonenum"></p>
 							</div>
 							
-						
+							
 							<div class="form-group">
 								<input class="form-control" type="password" name="pass"
 									placeholder="Mật khẩu" onkeyup="validateForm()">
@@ -175,7 +172,7 @@
 							</div>
 							
 							
-							<%--                        --%>
+							<%-- --%>
 							<br> <a href="#" id="forget-btn" class="float-left"></a> <a
 								href="http://localhost:8080/ParkingLot/login/loginForm.jsp"
 								id="" class="float-right"

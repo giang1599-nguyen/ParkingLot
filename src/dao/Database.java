@@ -68,7 +68,7 @@ public class Database {
 //        }
 //    }
     
-    //7.2Đổi active thành 1 nếu người dùng click vào link xác nhận
+    //7.2Đoi active thanh 1 neu ng dung nhan vao link xac nhan trong email 
     public int changeActive(String email, int active) {
         String sql = "Update user set active=? where email=?";
         try {
@@ -85,7 +85,7 @@ public class Database {
     }
 
     public int addUser(User user) {
-    	//Kiểm tra xem người dùng với email đã nhập đã tồn tại chưa
+    	//Kiem tra ng dung co ton tai k, neu k thi se them vao
         if (getUser(user.getEmail()) == null) {
             String sql = "Insert into user(email,fullname,password,address,phone,active) values(?,?,?,?,?,?)";
             try {
@@ -139,7 +139,7 @@ public class Database {
         String sqlCheck = "select resetpass.email from resetpass ";
         boolean flag = false;
         try {
-            // check email trong reset Ă„â€˜Ä‚Â£ tĂ¡Â»â€œn tĂ¡ÂºÂ¡i chĂ†Â°a
+            // check email trong reset Ä‚â€�Ă¢â‚¬ËœĂ„â€�Ă‚Â£ tÄ‚Â¡Ă‚Â»Ă¢â‚¬Å“n tÄ‚Â¡Ă‚ÂºĂ‚Â¡i chÄ‚â€ Ă‚Â°a
             PreparedStatement check = connection.prepareStatement(sqlCheck);
             ResultSet result = check.executeQuery();
             while (result.next()) {
@@ -156,8 +156,8 @@ public class Database {
         PreparedStatement pre = null;
         String sqlInsert = "insert into  resetpass (email,token) values(?,?)";
         try {
-            System.out.println(" chĂ†Â°a cÄ‚Â³ mail");
-            // nĂ¡ÂºÂ¿u mail chĂ†Â°a cÄ‚Â³ trong bĂ¡ÂºÂ£ng reset thÄ‚Â¬ thÄ‚Âªm vÄ‚Â o
+            System.out.println(" chÄ‚â€ Ă‚Â°a cĂ„â€�Ă‚Â³ mail");
+            // nÄ‚Â¡Ă‚ÂºĂ‚Â¿u mail chÄ‚â€ Ă‚Â°a cĂ„â€�Ă‚Â³ trong bÄ‚Â¡Ă‚ÂºĂ‚Â£ng reset thĂ„â€�Ă‚Â¬ thĂ„â€�Ă‚Âªm vĂ„â€�Ă‚Â o
             pre = connection.prepareStatement(sqlInsert);
             pre.setString(1, email);
             pre.setString(2, MD5Hashing.getMD5(token));
@@ -184,8 +184,8 @@ public class Database {
             //
             sqlUpdate = "UPDATE resetpass set resetpass.token=? WHERE email=?";
             try {
-                // Ă„â€˜Ä‚Â£ cÄ‚Â³ mail thÄ‚Â¬ update token
-                System.out.println(" Ă„ï¿½Ä‚Â£ cÄ‚Â³ mail");
+                // Ä‚â€�Ă¢â‚¬ËœĂ„â€�Ă‚Â£ cĂ„â€�Ă‚Â³ mail thĂ„â€�Ă‚Â¬ update token
+                System.out.println(" Ä‚â€�Ă¯Â¿Â½Ă„â€�Ă‚Â£ cĂ„â€�Ă‚Â³ mail");
                 pre = connection.prepareStatement(sqlUpdate);
 
                 pre.setString(1, MD5Hashing.getMD5(token));
@@ -216,7 +216,7 @@ public class Database {
         updateToken(email, null);
     }
 
-    // kiĂ¡Â»Æ’m tra thĂ¡Â»ï¿½i gian token Ă„â€˜Ä‚Â³ tĂ¡Â»â€œn tĂ¡ÂºÂ¡i trong vÄ‚Â²ng 30 phÄ‚Âºt mÄ‚Â  chĂ†Â°a click thÄ‚Â¬ xÄ‚Â³a luÄ‚Â´n token
+    // kiÄ‚Â¡Ă‚Â»Ă†â€™m tra thÄ‚Â¡Ă‚Â»Ă¯Â¿Â½i gian token Ä‚â€�Ă¢â‚¬ËœĂ„â€�Ă‚Â³ tÄ‚Â¡Ă‚Â»Ă¢â‚¬Å“n tÄ‚Â¡Ă‚ÂºĂ‚Â¡i trong vĂ„â€�Ă‚Â²ng 30 phĂ„â€�Ă‚Âºt mĂ„â€�Ă‚Â  chÄ‚â€ Ă‚Â°a click thĂ„â€�Ă‚Â¬ xĂ„â€�Ă‚Â³a luĂ„â€�Ă‚Â´n token
     public void deleteToken() {
         String sql = "select expirydate from resetpass";
         Timestamp time_token;
@@ -230,9 +230,9 @@ public class Database {
                 long t1 = window_time.getTime();
                 long t2 = time_token.getTime();
                 System.out.println(t1 - t2 + " dfd " + t2);
-                if (t1 - t2 >= 1764)// >=30 phÄ‚Âºt
+                if (t1 - t2 >= 1764)// >=30 phĂ„â€�Ă‚Âºt
                 {
-                    // xÄ‚Â³a token
+                    // xĂ„â€�Ă‚Â³a token
                     String sqlUpdate = "UPDATE resetpass set resetpass.token=? ";
                     try {
                         pre = connection.prepareStatement(sqlUpdate);
