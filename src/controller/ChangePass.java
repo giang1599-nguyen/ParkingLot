@@ -26,7 +26,7 @@ public class ChangePass extends HttpServlet {
                    // 9.1.1a khong trung thong bao link het han
                   response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
                     "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Link expired</h6>\n" +
-                    "</div>" + "<a href='#' style=\"\n" +
+                    "</div>" + "<a href='http://localhost:8080/ParkingLot/forgotPass/forgotPass.jsp' style=\"\n" +
                     "    /* margin: auto; */\n" +
                     "    display: flex;\n" +
                     "    justify-content: center;\n" +
