@@ -50,13 +50,13 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("count", 0);
                     session.setAttribute("user", user);
 
-                    request.setAttribute("mess", "Dang nhap thanh cong");
-
+     
                     response.sendRedirect("http://localhost:8080/ParkingLot/");
 
                     System.out.println("count: " + session.getAttribute("count"));
                     return;
                 }else{
+    request.setAttribute("mess", "sai email hoac mat khau");
                     if (session.getAttribute("count") == null) {
                         session.setAttribute("count", 1);
                     } else session.setAttribute("count", (int) session.getAttribute("count") + 1);
@@ -67,6 +67,7 @@ public class LoginController extends HttpServlet {
             }
         } else {
             System.out.println("captcha != null và verify = false");
+    request.setAttribute("mess1", "sai captcha");
             if (session.getAttribute("count") == null) {
                 session.setAttribute("count", 1);
             } else session.setAttribute("count", (int) session.getAttribute("count") + 1);
