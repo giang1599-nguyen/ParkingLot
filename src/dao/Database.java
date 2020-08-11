@@ -300,6 +300,7 @@ public class Database {
     public Database() throws SQLException {
         // moi lan chay database la kem tra token da het han chua
 //        deleteToken();
+    	//5.2.1 ket noi vao db
         this.connection = getConnectionSql();
     }
     //ket noi database
@@ -393,7 +394,7 @@ public class Database {
     }
 
     public int addUser(User user) {
-        //5.3Kiem tra ng dung co ton tai k, neu k thi se them vao
+        //5.4Kiem tra ng dung co ton tai k, neu k thi se them vao neu khong se tra ve 0
         if (getUser(user.getEmail()) == null) {
             String sql = "Insert into user(email,fullname,password,address,phone,active) values(?,?,?,?,?,?)";
             try {
@@ -401,7 +402,7 @@ public class Database {
 
                 pre.setString(1, user.getEmail());
                 pre.setString(2, user.getFullname());
-                //5.4 Ma hoa mat khau
+                //5.4.1 Ma hoa mat khau
                 pre.setString(3, MD5Hashing.getMD5(user.getPassword()));
                 pre.setString(4, user.getAddress());
                 pre.setString(5, user.getPhone());

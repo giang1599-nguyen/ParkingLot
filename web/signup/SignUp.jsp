@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>--%>
 <%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
 <!DOCTYPE html>
@@ -28,6 +27,7 @@
 	<link rel="stylesheet" href="http://localhost:8080/ParkingLot/css/style.css">
 
 	<script type="text/javascript">
+	
 		//3.1 kiểm tra thông tin người dùng nhập
 		function validateForm() {
 //
@@ -55,7 +55,7 @@
 			}
 
 			/////////////////////////////
-
+//Kiem tra email
 			if (!emailPattern.test(email.trim())) {
 				document.getElementById("erroremail").innerHTML = "Vui lòng nhập đúng định dạng email";
 				valid = false;
@@ -64,7 +64,7 @@
 			}
 
 			/////////////////////////////
-
+//Kiem tra dia chi
 			if (address.trim() == "") {
 				document.getElementById("erroraddress").innerHTML = "Hãy nhập địa chỉ";
 				valid = false;
@@ -73,7 +73,7 @@
 			}
 
 			/////////////////////////////
-
+//kiem tra sdt
 			if (!phonePattern.test(phonenum.trim())) {
 				document.getElementById("errorphonenum").innerHTML = "Hãy nhập số điện thoại đúng định dạng";
 				valid = false;
@@ -82,7 +82,7 @@
 			}
 
 			/////////////////////////////
-
+//kiem tra mat khau
 			if (!passPattern.test(pass.trim())) {
 				document.getElementById("errorpassword").innerHTML = "Mật khẩu phải có 8 kí tự gồm chữ hoa, chữ thường, số, kí tự đặt biệt ";
 				valid = false;
@@ -91,7 +91,7 @@
 			}
 
 			/////////////////////////////
-
+//kiem tra nhap lai mat khau
 			if (repass.trim() != pass.trim()) {
 				document.getElementById("errorrepassword").innerHTML = "Hãy nhập lại mật khẩu một lần nữa";
 				valid = false;
@@ -120,23 +120,26 @@
                         value="${request.getContextPath()}/RegisterController?vertifydk=true"
                         var="urlregis"></c:url>--%>
 
+<%-- Servlet xu ly voi doPost--%>
 					<form action="/ParkingLot/RegisterController" name="myform"
 						  onsubmit="return validateForm()" method="post">
-						<%--insert --%>
+						<%--insert--%>
 
+<%-- nhap ho ten --%>
 						<div class="form-group">
 							<input class="form-control" type="text" name="fullname"
 								   placeholder="Họ và tên" onkeyup="validateForm()">
 							<p style="color: red;" id="errorfullname"></p>
 						</div>
 
-
+<%-- nhap email --%>
 						<div class="form-group">
 							<input class="form-control" type="email" name="email"
 								   placeholder="Nhập email" onkeyup="validateForm()">
 							<p style="color: red;" id="erroremail"></p>
 						</div>
 							<%
+//hien thi neu email da ton tai trong database
 								String mess = (String) request.getAttribute("mess");
 								if (mess != null) {
 							%>
@@ -144,41 +147,42 @@
 							</p>
 							<%}%>
 
+<%-- nhap dia chi --%>
 						<div class="form-group">
 							<input class="form-control" type="text" name="address"
 								   placeholder="Địa chỉ" onkeyup="validateForm()">
 							<p style="color: red;" id="erroraddress"></p>
 						</div>
 
-
+<%-- nhap so dien thoai --%>
 						<div class="form-group">
 							<input class="form-control" type="number" name="phonenum"
 								   placeholder="Nhập số điện thoại:" onkeyup="validateForm()">
 							<p style="color: red;" id="errorphonenum"></p>
 						</div>
 
-
+<%--nhap mat khau --%>
 						<div class="form-group">
 							<input class="form-control" type="password" name="pass"
 								   placeholder="Mật khẩu" onkeyup="validateForm()">
 							<p style="color: red;" id="errorpassword"></p>
 						</div>
 
-
+<%-- nhap lai mat khau --%>
 						<div class="form-group">
 							<input class="form-control" type="password" name="repass"
 								   placeholder="Nhập lại mật khẩu" onkeyup="validateForm()">
 							<p style="color: red;" id="errorrepassword"></p>
 						</div>
 
-
+<%-- button submity --%>
 						<div class="form-group">
 							<input type="submit" class="btn btn-success btn-lg btn-block"
 								   value="Submit">
 						</div>
 
 
-						<%-- --%>
+<%--Chuyen qua dang nhap--%>
 						<br> <a href="#" id="forget-btn" class="float-left"></a> <a
 							href="http://localhost:8080/ParkingLot/login/loginForm.jsp"
 							id="" class="float-right"
