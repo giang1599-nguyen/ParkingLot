@@ -8,28 +8,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/CompleteChangePass")
-//11.1 Dung phuong thuc post de xu ly data
 public class CompleteChangePass extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String email = request.getParameter("email");
-             System.out.println("email là: " + email);
-             // 11.2 lay du lieu tu form changePass.jps khong null thi goi toi method changePass cua database
-             if (email != null) {
-            	 Database db = new Database();
-                 String pass = request.getParameter("pass");
-                 db.changePass(email, pass);
-                 //11.3 doi pass thanh cong thi xoa token da luu trong database
-                 db.deleteToken(email);
-                 //12 chuyen ve trang login
-                 response.sendRedirect("http://localhost:8080/ParkingLot/login/loginForm.jsp");
-                 System.out.println(" thay đổi mật khẩu thành công");
-             }
+        String email = request.getParameter("email");
+        String pass = request.getParameter("pass");
+        System.out.println("email là: " + email);
+        Database db= null;
+        try {
+            db = new Database();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (email != null) {
+            //11.2 . gọi tới phương thức changePass trong database
+            db.changePass(email, pass);
+            db.deleteToken(email);
+            //12 chuyern trang login
+            response.sendRedirect("http://localhost:8080/ParkingLot/login/loginForm.jsp");
+            System.out.println(" thay đổi mật khẩu thành công");
+        }
     }
-// 11. dung phuong thuc get de truy xuat du lieu
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
 

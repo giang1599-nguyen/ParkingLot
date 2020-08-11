@@ -8,23 +8,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/ChangePass")
 public class ChangePass extends HttpServlet {
-//9.1 Dung phuong thuc post de xu ly data
+//    9 doPost(HttpServletRequest request,HttpServletResponse response)
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email= request.getParameter("email");
+        String email = request.getParameter("email");
         String token = request.getParameter("token");
-        //9.1.1 kiem tra link ma nguoi dung nhap vao trung email va token thi cho doi mat khau
-        Database db = new Database();
-               if (db.checkToken(email, token)) {
-                   request.setAttribute("email", email);
-                   //9.1.2 kiem tra ok chuyen va trang doi mat khau
-                   request.getRequestDispatcher("forgotPass/changePass.jsp").forward(request, response);
-                   return;
-               } else {
-                   // 9.1.1a khong trung thong bao link het han
-                  response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
+        Database db= null;
+        try {
+            db = new Database();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //9.1.1 nếu kiểm tra trùng email và token thì cho đổi mật khẩu
+        if (db.checkToken(email, token)) {
+            request.setAttribute("email", email);
+            //9.1.2 : chuyển về trang change pass
+            request.getRequestDispatcher("forgotPass/changePass.jsp").forward(request, response);
+            return;
+        } else {
+            // 9.1.1a không thì thông báo check lại mail cho lựa chọn chuyển về trang quên mật khẩu
+
+            response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
                     "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Link expired</h6>\n" +
                     "</div>" + "<a href='http://localhost:8080/ParkingLot/forgotPass/forgotPass.jsp' style=\"\n" +
                     "    /* margin: auto; */\n" +
@@ -33,8 +40,9 @@ public class ChangePass extends HttpServlet {
                     "\">" + "Forgot password page" + "</a>");
         }
     }
-// 9. dung phuong thuc get de truy xuat du lieu
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 }

@@ -23,7 +23,11 @@
     User u = (User) s.getAttribute("user");
     if (u == null) {
 %>
-<header class="top_panel top_panel_custom top_panel_custom_12 top_panel_custom_header-fullwidth without_bg_image">
+<header class="top_panel top_panel_custom top_panel_custom_12 top_panel_custom_header-fullwidth without_bg_image"
+        style="
+    border-bottom: 3px solid gainsboro;
+    background: #fafafa;
+">
     <div class="vc_row wpb_row vc_row-fluid vc_custom_1522737638725 vc_row-o-equal-height vc_row-o-content-middle vc_row-flex shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_compact sc_layouts_row_fixed"
          style="top: auto;">
         <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-md-8 sc_layouts_column sc_layouts_column_align_left sc_layouts_column_icons_position_left">
@@ -79,12 +83,14 @@
                             <ul class="sc_layouts_login_menu sc_layouts_menu_nav sc_layouts_menu_no_collapse prepared inited sf-js-enabled sf-arrows"
                                 style="touch-action: pan-y;">
                                 <li class="menu-item">
+<%-- button Login trên header --%>
                                     <a href="http://localhost:8080/ParkingLot/login/loginForm.jsp"
                                        class="trx_addons_popup_link trx_addons_login_link  popup_inited"><span
                                             class="sc_layouts_item_icon sc_layouts_login_icon trx_addons_icon-user-alt"></span><span
                                             class="sc_layouts_item_details sc_layouts_login_details"><span
                                             class="sc_layouts_item_details_line1 sc_layouts_iconed_text_line1">Login</span></span></a>
                                 </li>
+<%-- button Sign Up trên header --%>
                                 <li class="menu-item">
                                     <a href="http://localhost:8080/ParkingLot/signup/SignUp.jsp">/ Sign Up</a>
                                 </li>
@@ -105,7 +111,11 @@
 </header>
 
 <%} else { %>
-<header class="top_panel top_panel_custom top_panel_custom_12 top_panel_custom_header-fullwidth without_bg_image">
+<header class="top_panel top_panel_custom top_panel_custom_12 top_panel_custom_header-fullwidth without_bg_image"
+        style="
+    border-bottom: 3px solid gainsboro;
+    background: #fafafa;
+">
     <div class="vc_row wpb_row vc_row-fluid vc_custom_1522737638725 vc_row-o-equal-height vc_row-o-content-middle vc_row-flex shape_divider_top-none shape_divider_bottom-none sc_layouts_row sc_layouts_row_type_compact sc_layouts_row_fixed"
          style="top: auto;">
         <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-md-8 sc_layouts_column sc_layouts_column_align_left sc_layouts_column_icons_position_left">

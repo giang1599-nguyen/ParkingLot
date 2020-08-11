@@ -21,9 +21,9 @@ public class ParkingLot {
         this.active = active;
     }
 
-    public void storeCarParkinglot(String state) {
-        Database.storeCarParkinglot(state, this.name);
-    }
+//    public void storeCarParkinglot(String state) {
+//        Database.storeCarParkinglot(state, this.name);
+//    }
 
 //    public boolean checkSlot() {
 //        if (capacity < this.getMaxCapacity()) {
@@ -32,7 +32,7 @@ public class ParkingLot {
 //        return false;
 //    }
 
-    public void increaseCapacity() {
+    public void increaseCapacỉty() {
         this.capacity++;
     }
 

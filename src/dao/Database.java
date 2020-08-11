@@ -302,6 +302,7 @@ public class Database {
 //        deleteToken();
         this.connection = getConnectionSql();
     }
+    //ket noi database
     public Connection getConnectionSql() throws SQLException {
         Connection conn = null;
         try {
@@ -320,9 +321,9 @@ public class Database {
 
         return conn;
     }
-    public static void storeCarParkinglot(String state, String name) {
-
-    }
+//    public static void storeCarParkinglot(String state, String name) {
+//
+//    }
 
     public boolean checkUser(String email, String password) throws SQLException {
         ResultSet set = null;
@@ -392,7 +393,7 @@ public class Database {
     }
 
     public int addUser(User user) {
-        //Kiem tra ng dung co ton tai k, neu k thi se them vao
+        //5.3Kiem tra ng dung co ton tai k, neu k thi se them vao
         if (getUser(user.getEmail()) == null) {
             String sql = "Insert into user(email,fullname,password,address,phone,active) values(?,?,?,?,?,?)";
             try {
@@ -400,6 +401,7 @@ public class Database {
 
                 pre.setString(1, user.getEmail());
                 pre.setString(2, user.getFullname());
+                //5.4 Ma hoa mat khau
                 pre.setString(3, MD5Hashing.getMD5(user.getPassword()));
                 pre.setString(4, user.getAddress());
                 pre.setString(5, user.getPhone());
@@ -415,7 +417,7 @@ public class Database {
     }
     // kiem tra input email va token co trung trong database khong
     public boolean checkToken(String email, String token) {
-        String sql = "select * from resetpass where email=?";
+        String sql = "select * from user where email=?";
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
             pre.setString(1, email);
@@ -443,10 +445,10 @@ public class Database {
 
     private boolean checkEmail(String email) {
 
-        String sqlCheck = "select resetpass.email from resetpass ";
+        String sqlCheck = "select user.email from user ";
         boolean flag = false;
         try {
-            // check email trong reset Ä‚â€�Ă¢â‚¬ËœĂ„â€�Ă‚Â£ tÄ‚Â¡Ă‚Â»Ă¢â‚¬Å“n tÄ‚Â¡Ă‚ÂºĂ‚Â¡i chÄ‚â€ Ă‚Â°a
+            // check email trong bảng user
             PreparedStatement check = connection.prepareStatement(sqlCheck);
             ResultSet result = check.executeQuery();
             while (result.next()) {
@@ -461,7 +463,7 @@ public class Database {
 
     private void insertToken(String email, String token) {
         PreparedStatement pre = null;
-        String sqlInsert = "insert into  resetpass (email,token) values(?,?)";
+        String sqlInsert = "insert into  user (email,token) values(?,?)";
         try {
             System.out.println(" chÄ‚â€ Ă‚Â°a cĂ„â€�Ă‚Â³ mail");
             // nÄ‚Â¡Ă‚ÂºĂ‚Â¿u mail chÄ‚â€ Ă‚Â°a cĂ„â€�Ă‚Â³ trong bÄ‚Â¡Ă‚ÂºĂ‚Â£ng reset thĂ„â€�Ă‚Â¬ thĂ„â€�Ă‚Âªm vĂ„â€�Ă‚Â o
@@ -479,7 +481,7 @@ public class Database {
         PreparedStatement pre = null;
         String sqlUpdate;
         if (token == null) {
-            sqlUpdate = "UPDATE resetpass set resetpass.token='' ";
+            sqlUpdate = "UPDATE user set user.token='' ";
             try {
                 pre = connection.prepareStatement(sqlUpdate);
                 pre.executeUpdate();
@@ -489,7 +491,7 @@ public class Database {
             }
         } else {
             //
-            sqlUpdate = "UPDATE resetpass set resetpass.token=? WHERE email=?";
+            sqlUpdate = "UPDATE user set user.token=? WHERE email=?";
             try {
                 // Ä‚â€�Ă¢â‚¬ËœĂ„â€�Ă‚Â£ cĂ„â€�Ă‚Â³ mail thĂ„â€�Ă‚Â¬ update token
                 System.out.println(" Ä‚â€�Ă¯Â¿Â½Ă„â€�Ă‚Â£ cĂ„â€�Ă‚Â³ mail");
@@ -505,6 +507,7 @@ public class Database {
         }
     }
     // cap nhat password trong database
+    //11.2 changePass(email, pass)
     public void changePass(String email, String pass) {
         String sql = "update user set password=? where email=?";
         try {
@@ -525,7 +528,7 @@ public class Database {
 
     // kiÄ‚Â¡Ă‚Â»Ă†â€™m tra thÄ‚Â¡Ă‚Â»Ă¯Â¿Â½i gian token Ä‚â€�Ă¢â‚¬ËœĂ„â€�Ă‚Â³ tÄ‚Â¡Ă‚Â»Ă¢â‚¬Å“n tÄ‚Â¡Ă‚ÂºĂ‚Â¡i trong vĂ„â€�Ă‚Â²ng 30 phĂ„â€�Ă‚Âºt mĂ„â€�Ă‚Â  chÄ‚â€ Ă‚Â°a click thĂ„â€�Ă‚Â¬ xĂ„â€�Ă‚Â³a luĂ„â€�Ă‚Â´n token
     public void deleteToken() {
-        String sql = "select expirydate from resetpass";
+        String sql = "select expirydate from user";
         Timestamp time_token;
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
@@ -540,7 +543,7 @@ public class Database {
                 if (t1 - t2 >= 1764)// >=30 phĂ„â€�Ă‚Âºt
                 {
                     // xĂ„â€�Ă‚Â³a token
-                    String sqlUpdate = "UPDATE resetpass set resetpass.token=? ";
+                    String sqlUpdate = "UPDATE user set user.token=? ";
                     try {
                         pre = connection.prepareStatement(sqlUpdate);
                         pre.setString(1, "");

@@ -25,7 +25,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans"
 		  rel="stylesheet">
 	<!--custom css -->
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="http://localhost:8080/ParkingLot/css/style.css">
 
 	<script type="text/javascript">
 		//3.1 kiểm tra thông tin người dùng nhập
@@ -140,7 +140,7 @@
 								String mess = (String) request.getAttribute("mess");
 								if (mess != null) {
 							%>
-							<p><%=mess%>
+							<p style="color: red"><%=mess%>
 							</p>
 							<%}%>
 

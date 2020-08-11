@@ -16,26 +16,32 @@ import java.sql.*;
 @WebServlet("/LoginFB")
 public class LoginFBController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name="",email="";
-User user =null;
-// lấy emai với tên
+        String name = "", email = "";
+        User user = null;
         name = request.getParameter("name");
         email = request.getParameter("email");
-
-        System.out.println("Ten la: "+name+" email la: "+email);
-// nếu user chưa có dưới database thì thêm vào
-       if((user = Database.getUser(email)) == null)  {
-           Database.addUser(email,name);
-                user = Database.getUser(email);
+        Database db = null;
+        try {
+            db = new Database();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-// tạo session cho người dùng
+        System.out.println("Ten la: " + name + " email la: " + email);
+
+        if ((user = db.getUser(email)) == null) {
+           db.addUser(email, name);
+                user = db.getUser(email);
+
+        }
+
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
+        request.setAttribute("mess", "Dang nhap thanh cong");
         // chuyen qua trang home
-        response.sendRedirect("http://localhost:8080/ParkingLot");
+        response.sendRedirect("http://localhost:8080/ParkingLot/index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 }

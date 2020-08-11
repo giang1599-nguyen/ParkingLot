@@ -7,8 +7,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendMail {
-// 5.1.1 gui toi mail nguoi dung nhap voi token da hash theo chi dinh cua ForgotPassController
-    public static boolean sendMail(String mail, String subject, String token) {
+//    5.1 sendMail(String mail, String subject, String token)
+    public static boolean sendMail(String mail, String subject, String token ) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -35,6 +35,7 @@ public class SendMail {
     }
 
     public static void main(String[] args) {
-        sendMail("thnhlngtrung@gmail.com","hihihi","lay lai mat khau");
+        sendMail("giang1599.ng@gmail.com","hihihi","lay lai mat khau");
+        System.out.println("thanh dep trai");
     }
 }

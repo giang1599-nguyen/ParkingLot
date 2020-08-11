@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <!--custom css -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/ParkingLot/css/style.css">
     <script type="text/javascript">
         var onloadCallback = function () {
             grecaptcha.render('html_element', {
@@ -93,7 +93,12 @@
 </head>
 <body>
 
-
+<%--<form action="http://localhost:8080/ParkingLot/DoLogin" method="post">--%>
+<%--    Tài khoản:--%>
+<%--    <input name="email" type="text" value="nhap tai khoan">--%>
+<%--    Mật khẩu:--%>
+<%--    <input name="pass" type="password" value="nhap mat khau">--%>
+<%--    <input type="submit">--%>
 <div class="container" style="margin-top: 100px;">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -112,15 +117,14 @@
                 <h4>OR</h4><br>
                 <hr>
                 <div class="panel-body">
-<%
-    String mess = (String) request.getAttribute("mess");
-    if (mess != null) {
-%>
-<p><%=mess%>
-</p>
-<%}%>
-
-                    <form action="http://localhost:8080/ParkingLot/LoginController" method="post"  name="myform"  onsubmit="return validateForm()">
+                    <%
+                        String mess = (String) request.getAttribute("mess");
+                        if (mess != null) {
+                    %>
+                    <p style="color: red"><%=mess%>
+                    </p>
+                    <%}%>
+                    <form action="http://localhost:8080/ParkingLot/LoginController" method="post" name="myform">
                         <div class="form-group">
                             <input type="email" name="email" class="form-control" placeholder="Enter E-mail" required>
                             <p style="color: red;" id="erroremail"></p>
@@ -131,22 +135,25 @@
                                    required>
                             <p style="color: red;" id="errorrepassword"></p>
                         </div> <!--end of form group-->
-<%--                         captcha--%>
+                        <%--                         captcha--%>
                         <div id="html_element"></div>
-<%
-    String mess1 = (String) request.getAttribute("mess1");
-    if (mess1 != null) {
-%>
-<p><%=mess1%>
-</p>
-<%}%>
                         <br>
+                        <%
+                            String mess1 = (String) request.getAttribute("mess1");
+                            if (mess1 != null) {
+                        %>
+                        <p style="color: red"><%=mess1%>
+                        </p>
+                        <%}%>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success btn-lg btn-block" value="Submit">
                         </div> <!--end of form group-->
 
                         <a href="http://localhost:8080/ParkingLot/forgotPass/forgotPass.jsp" id="forget-btn"
+
+                        <%--                           1.Click "Forgot Password" trên trang login--%>
                            class="float-left">Forgot Password?</a>
+<%--                        2. Chuyển về trang quên mật khẩu--%>
                         <a href="http://localhost:8080/ParkingLot/signup/SignUp.jsp" id="forget-btn1"
                            class="float-right">Sign Up a new Account?</a>
                     </form> <!--end of form-->
@@ -158,18 +165,19 @@
     </div> <!--end of row-->
 </div> <!--end of container class-->
 <%
-    if(session.getAttribute("count")!=null) {
-        int count = (int)session.getAttribute("count");
-        if(count >=3) {
+    if (session.getAttribute("count") != null) {
+        int count = (int) session.getAttribute("count");
+        if (count >= 3) {
 
-    %>
+%>
 
-    <script src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-            async defer>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
 
-    </script >
-    <%}
-}
+</script>
+<%
+        }
+    }
 %>
 
 
