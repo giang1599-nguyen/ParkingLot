@@ -32,9 +32,9 @@ public class ParkingLot {
 //        return false;
 //    }
 
-    public void increaseCapacỉty() {
-        this.capacity++;
-    }
+//    public void increaseCapacỉty() {
+//        this.capacity++;
+//    }
 
     public int getIdOwner() {
         return idOwner;

@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
         address = request.getParameter("address");
         phone = request.getParameter("phonenum");
 
-
+//5.1 Tao user de them vao database
         User user = new User();
         user.setEmail(email);
         user.setFullname(fullname);
@@ -38,32 +38,34 @@ public class RegisterController extends HttpServlet {
         user.setAddress(address);
         user.setPhone(phone);
 
-        //5.1Them user vao DB va check xem user ton tai chua, neu chua return 0
-        //5.2. get Connection
+        //Them user vao DB va check xem user ton tai chua, neu chua return 0
+        //5.2. ket noi database
         Database db = null;
-        try {
+        try {	
+        	 //5.2.1. get connection
             db = new Database();
+            //5.3 them nguoi dung vao db voi active = 0;
+            if(db.addUser(user)!=0){
+
+                //5.5Gui link xac nhan ve mail cho ng dung
+                String link ="http://localhost:8080/ParkingLot/vertifyEmail?email="+email;
+                SendMail.sendMail(email,"xac thuc email","click vao link sau de xac thuc email: "+ link  );
+
+                //5.6 Hien thi thong bao yeu cau ng dung xac nhan link
+                response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
+                        "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Please check your email to active your account..</h6>\n" +
+                        "</div>");
+            }
+            //5a.Neu email ton tai thi chuyen ve trang sign up va hien thi "Existed email"
+            else{
+                //5a chuyen ve trang sign up
+                request.setAttribute("mess","Existed email");
+                request.getRequestDispatcher("signup/SignUp.jsp").forward(request,response);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       //5.1
-        if(db.addUser(user)!=0){
-
-            //5.5Gui link xac nhan ve mail cho ng dung
-            String link ="http://localhost:8080/ParkingLot/vertifyEmail?email="+email;
-            SendMail.sendMail(email,"xac thuc email","click vao link sau de xac thuc email: "+ link  );
-
-            //5.6 Hien thi thong bao yeu cau ng dung xac nhan link
-            response.getWriter().write("<div style=\"width: 100%;height: 50px\">\n" +
-                    "<h6 style=\"padding: 10px;text-align: center;font-size: 20px;\">Please check your email to active your account..</h6>\n" +
-                    "</div>");
-        }
-        //5a.Neu email ton tai thi chuyen ve trang sign up va hien thi "Existed email"
-        else{
-            //5a chuyen ve trang sign up
-            request.setAttribute("mess","Existed email");
-            request.getRequestDispatcher("signup/SignUp.jsp").forward(request,response);
-        }
+    
 
     }
 }
