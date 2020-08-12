@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
         passWord = request.getParameter("pass");
 
 // kiểm tra captcha có đúng không
+//5.verify(String gRecaptchaReponse)
         boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
         System.out.println("verify is: " + verify);
 
@@ -44,14 +45,18 @@ public class LoginController extends HttpServlet {
             System.out.println("captcha = null hoặc  verify = true");
             Database db;
             try {
+//6.tạo database
                 db = new Database();
                 // nếu tài khoản mật khẩu đúng thì đăng nhập thành công
+//7. checkUser (email, pasword)
                 if (db.checkUser(email.trim(), passWord.trim())) {
+//8. getUser(email)
                     User user = db.getUser(email);
-
+//9.set session
                     session.setAttribute("count", 0);
                     session.setAttribute("user", user);
 //chuyển về trang home
+//10. redirect home
                     response.sendRedirect("http://localhost:8080/ParkingLot/");
 
                     System.out.println("count: " + session.getAttribute("count"));
@@ -79,6 +84,7 @@ public class LoginController extends HttpServlet {
             System.out.println("count: " + session.getAttribute("count"));
 
         }
+//11.redirect login
         request.getRequestDispatcher("login/loginForm.jsp").forward(request,response);
 //        response.sendRedirect("http://localhost:8080/ParkingLot/login/loginForm.jsp");
     }
