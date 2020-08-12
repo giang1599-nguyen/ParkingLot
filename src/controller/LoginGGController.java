@@ -22,11 +22,7 @@ public class LoginGGController extends HttpServlet {
         String name = "", email = "";
         User user;
         Database db = null;
-        try {
-            db = new Database();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
         String code = request.getParameter("code");
         if (code == null || code.isEmpty()) {
             RequestDispatcher dis = request.getRequestDispatcher("url error page");
@@ -34,20 +30,32 @@ public class LoginGGController extends HttpServlet {
             System.out.println("code is empty");
             return;
         } else {
+//5 getToken(code: String)
             String accessToken = GoogleUtils.getToken(code);
             System.out.println("access token: " + accessToken);
+//6 getUserInfo(accessToken)
             GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
+//7 getName(), getEmail()
             name = googlePojo.getName();
             email = googlePojo.getEmail();
+//8 tạo database
+try {
+            db = new Database();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//9 getUser(email)
             if ((user = db.getUser(email)) == null) {
+//10 addUser(email,name)
                db.addUser(email, name);
+//11 getUser(email)
                     user = db.getUser(email);
 
             }
-
+//12 set session
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-//            request.setAttribute("mess", "Dang nhap thanh cong");
+//13. redirect home
             response.sendRedirect("http://localhost:8080/ParkingLot/");
 //chuyen qua trang home
         }

@@ -21,23 +21,26 @@ public class LoginFBController extends HttpServlet {
         name = request.getParameter("name");
         email = request.getParameter("email");
         Database db = null;
+//4. tạo database
         try {
             db = new Database();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println("Ten la: " + name + " email la: " + email);
-
+//5 getUser(email)
         if ((user = db.getUser(email)) == null) {
+//6 adduser(email,name)
            db.addUser(email, name);
+//7 getUser(email)
                 user = db.getUser(email);
 
         }
-
+//8 set session
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        request.setAttribute("mess", "Dang nhap thanh cong");
         // chuyen qua trang home
+//9. redirect home
         response.sendRedirect("http://localhost:8080/ParkingLot/index.jsp");
     }
 

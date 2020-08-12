@@ -124,7 +124,7 @@
                     <p style="color: red"><%=mess%>
                     </p>
                     <%}%>
-                    <form action="http://localhost:8080/ParkingLot/LoginController" method="post" name="myform">
+                    <form action="http://localhost:8080/ParkingLot/LoginController" method="post" name="myform"> <%--4. doPost(HttpServletRequest request, HttpServletResponse response)--%>
                         <div class="form-group">
                             <input type="email" name="email" class="form-control" placeholder="Enter E-mail" required>
                             <p style="color: red;" id="erroremail"></p>
