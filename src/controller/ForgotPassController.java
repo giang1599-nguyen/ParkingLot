@@ -5,7 +5,6 @@ import dao.MD5Hashing;
 import dao.SendMail;
 import model.User;
 
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

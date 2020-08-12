@@ -7,41 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0dba1d9-3941-4af9-b3a1-43c6af8f8c22" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/javax.json-1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ChangePass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/CompleteChangePass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ForgotPassController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/LoginFBController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/LoginGGController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/LogoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/VertifyEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/GetConnectDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/GoogleUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/MD5Hashing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/SendMail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/GooglePojo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/VerifyRecaptcha.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/css.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/forgot_style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/style_index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/footer.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/forgotPass/changePass.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/forgotPass/forgotPass.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/header.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/img/img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/login/loginFB.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/login/loginForm.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/login/loginGG.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ParkingSlot_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ParkingSlot_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ParkingLot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ParkingLot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/activation.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jstl-api-1.2-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mail.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParkingLot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ParkingLot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParkingLot.iws" beforeDir="false" afterPath="$PROJECT_DIR$/ParkingLot.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/META-INF/ParkingLot.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/ChangePass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/CompleteChangePass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/ForgotPassController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/LoginFBController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/LoginGGController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/LogoutController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/controller/VertifyEmail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/dao/Database.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/dao/GetConnectDatabase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/dao/GoogleUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/dao/MD5Hashing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/dao/SendMail$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/dao/SendMail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/model/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/model/GooglePojo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/model/ParkingLot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ParkingLot/model/VerifyRecaptcha.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ForgotPassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ForgotPassController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +64,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/ParkingLot_war_exploded" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ParkingLot" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -81,23 +73,24 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\XamPP\htdocs\ParkingLot\web" />
-      <recent name="D:\XamPP\htdocs\ParkingLot\web\img" />
-      <recent name="D:\XamPP\htdocs\ParkingLot\web\css" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dao" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\XamPP\htdocs\Đăng git\ParkingLot\lib" />
       <recent name="D:\XamPP\htdocs\ParkingLot\lib" />
       <recent name="D:\XamPP\htdocs\ParkingLot\web" />
       <recent name="D:\XamPP\htdocs\ParkingLot\web\login" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\XamPP\htdocs\ParkingLot\web" />
+      <recent name="D:\XamPP\htdocs\ParkingLot\web\img" />
+      <recent name="D:\XamPP\htdocs\ParkingLot\web\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -269,6 +262,7 @@
       <workItem from="1596681839133" duration="16178000" />
       <workItem from="1596966181369" duration="443000" />
       <workItem from="1597116332113" duration="4091000" />
+      <workItem from="1597122212749" duration="618000" />
     </task>
     <servers />
   </component>
