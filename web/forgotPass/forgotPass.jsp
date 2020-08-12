@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <style>
-        body{
-           background-image: url(http://localhost:8080/ParkingLot/img/img.jpg);
+        body {
+            background-image: url(http://localhost:8080/ParkingLot/img/img.jpg);
         }
     </style>
 </head>
@@ -43,20 +43,21 @@
                             <h2 class="text-center">Forgot Password?</h2>
                             <p>You can reset your password here.</p>
                             <div class="panel-body">
-                                <%-- hien thi form--%>
-                                <form class="form" method="post" action="http://localhost:8080/ParkingLot/ForgotPassController">
+                                <%-- dùng method post để tương tác với controller--%>
+                                <form class="form" method="post"
+                                      action="http://localhost:8080/ParkingLot/ForgotPassController">
                                     <fieldset>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-envelope color-blue"></i></span>
- <%-- 3. Nguoi dung nhap email--%>
+                                                <%-- 3. Nguoi dung nhap email--%>
                                                 <input id="emailInput" placeholder="emxample@gmail.com" name="email"
                                                        class="form-control" type="email"
-                                                      required="">
+                                                       required>
                                             </div>
                                         </div>
-<%--                                        hiển thị lên form mess--%>
+                                        <%--hiển thị lên form mess--%>
                                         <%
                                             String mess = (String) request.getAttribute("mess");
                                             if (mess != null) {
@@ -72,15 +73,20 @@
 
                                     </fieldset>
                                 </form>
-
+                                <%--end form--%>
                             </div>
                         </div>
                     </div>
+                    <%--             end div body       --%>
                 </div>
+                <%--                end div panel--%>
             </div>
+            <%--             end div col--%>
         </div>
+        <%--        end div row--%>
     </div>
 </div>
+<%--end --%>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 

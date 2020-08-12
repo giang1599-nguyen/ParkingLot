@@ -46,43 +46,49 @@
                             <h3><i class="fa fa-lock fa-4x"></i></h3>
                             <h2 class="text-center">Change Password</h2>
 
-                            <div class="panel-body">
+                            <%--                                        form start--%>
+                            <%-- dùng method post để gọi tới controller--%>
 
-                                <form method="post" onsubmit="validateRepass();" action="http://localhost:8080/ParkingLot/CompleteChangePass">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <input style="visibility: hidden" name="email" type="text"
-                                                   value="<%=email%>">
-                                            <div class="input-group">
+                            <form method="post" onsubmit="validateRepass();"
+                                  action="http://localhost:8080/ParkingLot/CompleteChangePass">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <%--                                           cập nhật giá trị email khi người dùng đổi mật khẩu--%>
+                                        <input style="visibility: hidden" name="email" type="text"
+                                               value="<%=email%>">
+                                        <div class="input-group">
                                                 <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-lock color-blue"></i></span>
-                                                <%--10 > nguoi dung nhap password moi , xac nhan lai va nhan save--%>
-                                                <input placeholder="***********" name="pass"
-                                                       class="form-control" type="password" id="password"
-                                                     required="">
-                                            </div>
-                                            <p id="checkPass"></p>
-                                            <br>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i
-                                                        class="glyphicon glyphicon-lock color-blue"></i></span>
-
-                                                <input placeholder="***********" name="repass" id="repassword"
-                                                       class="form-control" type="password"
-                                                    required="">
-                                            </div>
-                                            <p id="checkRepass"></p>
+                                            <%--10 > nguoi dung nhap password moi , xac nhan lai va nhan save--%>
+                                            <input placeholder="********" name="pass"
+                                                   class="form-control" type="password" id="password"
+                                                   required="">
                                         </div>
-
-                                        <div class="form-group">
-                                            <input class="btn btn-lg btn-primary btn-block" value="Save Password"
-                                                   type="submit" id="submit" >
-                                        </div>
+                                        <p id="checkPass"></p>
                                         <br>
+                                        <div class="input-group">
+                                                <span class="input-group-addon"><i
+                                                        class="glyphicon glyphicon-lock color-blue"></i></span>
+                                            <%--nhập lại mật khẩu--%>
+                                            <input placeholder="***********" name="repass" id="repassword"
+                                                   class="form-control" type="password"
+                                                   required="">
+                                        </div>
+                                        <p id="checkRepass"></p>
+                                    </div>
 
-                                    </fieldset>
-                                </form>
+                                    <div class="form-group">
+                                        <%--                                             buttong lưu --%>
+                                        <input class="btn btn-lg btn-primary btn-block" value="Save Password"
+                                               type="submit" id="submit">
+                                    </div>
+                                    <br>
 
+                                </fieldset>
+                            </form>
+                            <%--                            form end--%>
+                            <div class="panel-body">
+<%--                             end body--%>
                             </div>
                         </div>
                     </div>
@@ -182,8 +188,10 @@
 </script>
 <script>
     <%--             validate passs va repass--%>
+    <%--    gán id để thẻ id cập nhật mỗi lần dữ liệu thay đổi--%>
     const check_password = document.getElementById("password");
     const check_repassword = document.getElementById("repassword");
+    // nhận validate khi bắt đầu nhấn key
     check_password.addEventListener("keyup", validatePass);
     check_repassword.addEventListener("keyup", validateRepass);
 
@@ -192,20 +200,23 @@
         return re.test(password);
     }
 
+    // xử lí mật khẩu đầu :ký tự hoa, thường, số và ký tự đặc biệt và ít nhất 8 ký tự
     function validatePass() {
+        var re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
         var $result = $("#checkPass");
         var pass = $("#password").val();
         $result.text("");
 
-        if (validatePassword(pass)) {
+        if (re.test(pass)) {
             $result.text("");
         } else {
-            $result.text("Password chứa bao gồm có ký tự hoa, thường, số và ký tự đặc biệt :(");
+            $result.text("Password chứa bao gồm có ký tự hoa, thường, số và ký tự đặc biệt và ít nhất 8 ký tự :(");
             $result.css("color", "red");
         }
         return false;
     }
 
+    // xử lí mật khẩu nhập lại
     function validateRepass() {
         var $result = $("#checkRepass");
         var pass = $("#repassword").val();
@@ -222,7 +233,7 @@
         } else {
             $result.text("");
             console.log("true")
-            document.getElementById("submit").setAttribute("type","submit");
+            document.getElementById("submit").setAttribute("type", "submit");
             return true;
         }
         console.log("tới đây false")
